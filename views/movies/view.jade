@@ -4,17 +4,23 @@ extends ../layout
 block content
   h1= movie.name
 
+  h2= t('view_movie.add_actor.title')
   form(action='/movies/'+movie.id+'/add_actor', method='post')
-    select(name='person_id')
-      each person in people
-        option(value=person.id)= person.surname + ', ' + person.firstname
-    input(type='submit')
+    label= t('view_movie.add_actor.person')
+      select(name='person_id')
+        each person in people
+          option(value=person.id)= person.surname + ', ' + person.firstname
+    br
+    input(type='submit', value=t('view_movie.add_actor.submit'))
 
+  h2= t('view_movie.add_director.title')
   form(action='/movies/'+movie.id+'/add_director', method='post')
-    select(name='person_id')
-      each person in people
-        option(value=person.id)= person.surname + ', ' + person.firstname
-    input(type='submit')
+    label= t('view_movie.add_director.person')
+      select(name='person_id')
+        each person in people
+          option(value=person.id)= person.surname + ', ' + person.firstname
+    br
+    input(type='submit', value=t('view_movie.add_director.submit'))
 
   h2= t('view_movie.list_actors')
   ul

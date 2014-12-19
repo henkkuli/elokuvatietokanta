@@ -3,14 +3,43 @@
     "movies": "Elokuvat",
     "people": "Henkilöt"
   },
+
   "list_movies": {
     "title": "Elokuvat",
-    "list_movies": "Elokuvat",
-    "add_movie": "Lisää elokuva"
+    "create": {
+      "title": "Lisää elokuva",
+      "name": "Nimi: ",
+      "submit": "Lisää"
+    },
+    "list_movies": "Elokuvat"
   },
+  "list_people": {
+    "list_people": "Henkilöt",
+    "create": {
+      "title": "Lisää henkilö",
+      "firstname": "Etunimi: ",
+      "surname": "Sukunimi: ",
+      "submit": "Lisää"
+    }
+  },
+
   "view_movie": {
     "title": "Elokuva",
+    "add_actor": {
+      "title": "Lisää näyttelijä elokuvaan",
+      "person": "Näyttelijä: ",
+      "submit": "Lisää"
+    },
+    "add_director": {
+      "title": "Lisää elokuvalle ohjaaja",
+      "person": "Ohjaaja: ",
+      "submit": "Lisää"
+    },
     "list_actors": "Näyttelijät",
     "list_directors": "Ohjaajat"
+  },
+  "view_person": {
+    "list_acted_movies": "Elokuvat, joissa näytellyt",
+    "list_directed_movies": "Elokuvat, joita on ohjannut"
   }
 }

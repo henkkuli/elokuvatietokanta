@@ -4,11 +4,15 @@ block setup
   - title = t('list_people.title')
 
 block content
-  h2= t('list_people.add_person')
+  h2= t('list_people.create.title')
   form(action='/people/create', method='post')
-    input(type='text', name='firstname')
-    input(type='text', name='surname')
-    input(type='submit')
+    label= t('list_people.create.firstname')
+      input(type='text', name='firstname')
+    br
+    label= t('list_people.create.surname')
+      input(type='text', name='surname')
+    br
+    input(type='submit', value=t('list_people.create.submit'))
 
   h2= t('list_people.list_people')
   ul

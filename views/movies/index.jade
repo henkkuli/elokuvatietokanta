@@ -4,10 +4,12 @@ block setup
   - title = t('list_movies.title')
 
 block content
-  h2= t('list_movies.add_movie')
+  h2= t('list_movies.create.title')
   form(action='/movies/create', method='post')
-    input(type='text', name='name')
-    input(type='submit')
+    label= t('list_movies.create.name')
+      input(type='text', name='name')
+    br
+    input(type='submit', value=t('list_movies.create.submit'))
 
   h2= t('list_movies.list_movies')
   ul
