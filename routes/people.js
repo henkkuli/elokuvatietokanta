@@ -32,7 +32,6 @@ router.get('/:id/view', function(req, res) {
       {model: models.Movie, as: 'DirectedMovies'}
     ]
   }).then(function(person) {
-    console.log(JSON.stringify(person));
     res.render('people/view', {
       person: person
     });
