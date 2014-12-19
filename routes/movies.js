@@ -52,4 +52,14 @@ router.post('/:id/add_actor', function(req, res) {
   });
 });
 
+// Add a director for a movie
+router.post('/:id/add_director', function(req, res) {
+  models.Movie.find({
+    where: {id: req.param('id')},
+  }).then(function(movie) {
+    movie.addDirector(parseInt(req.param('person_id')));
+    res.redirect('/movies/' + req.param('id') + '/view/');
+  });
+});
+
 module.exports = router;
