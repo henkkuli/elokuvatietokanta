@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "movies": "Elokuvat",
+    "people": "Henkilöt"
+  },
+  "list_movies": {
+    "title": "Elokuvat",
+    "list_movies": "Elokuvat",
+    "add_movie": "Lisää elokuva"
+  },
+  "view_movie": {
+    "title": "Elokuva",
+    "list_actors": "Näyttelijät",
+    "list_directors": "Ohjaajat"
+  }
+}

@@ -1,0 +1,31 @@
+extends ../layout
+
+
+block content
+  h1= movie.name
+
+  form(action='/movies/'+movie.id+'/add_actor', method='post')
+    //- input(type='number', name='person_id')
+    select(name='person_id')
+      each person in people
+        option(value=person.id)= person.surname + ', ' + person.firstname
+    input(type='submit')
+
+  form(action='/movies/'+movie.id+'/add_director', method='post')
+    //- input(type='number', name='person_id')
+    select(name='person_id')
+      each person in people
+        option(value=person.id)= person.surname + ', ' + person.firstname
+    input(type='submit')
+
+  h2= t('view_movie.list_actors')
+  ul
+  each actor in movie.Actors
+    li
+      a(href='/people/'+actor.id+'/view/')= actor.surname + ', ' + actor.firstname
+
+  h2= t('view_movie.list_directors')
+  ul
+  each director in movie.Directors
+    li
+      a(href='/people/'+actor.id+'/view/')= actor.surname + ', ' + actor.firstname

@@ -1,0 +1,17 @@
+extends ../layout
+
+block setup
+  - title = t('list_people.title')
+
+block content
+  h2= t('list_people.add_person')
+  form(action='/people/create', method='post')
+    input(type='text', name='firstname')
+    input(type='text', name='surname')
+    input(type='submit')
+
+  h2= t('list_people.list_people')
+  ul
+  each person in people
+    li
+      a(href='/people/'+person.id+'/view')= person.surname + ', ' + person.firstname

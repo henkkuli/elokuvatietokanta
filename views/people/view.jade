@@ -1,0 +1,12 @@
+extends ../layout
+
+block setup
+  - var title = t('view_person.title')
+
+block content
+  h1= person.name
+
+  h2= t('view_person.list_acted_movies')
+  ul
+  each movie in person.ActedMovies
+    li= movie.name
