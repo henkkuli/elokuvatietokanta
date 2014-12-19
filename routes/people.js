@@ -15,9 +15,15 @@ router.get('/', function(req, res) {
 
 // Create a person
 router.post('/create', function(req, res) {
+  var firstname = req.param('firstname');
+  var surname = req.param('surname');
+  if (!firstname || !firstname.length || !surname || !surname.length) {
+    res.redirect('/people/');
+    return;
+  }
   models.Person.create({
-    firstname: req.param('firstname'),
-    surname: req.param('surname')
+    firstname: firstname,
+    surname: surname
   }).then(function(person) {
     res.redirect('/people/' + person.id + '/view');
   });

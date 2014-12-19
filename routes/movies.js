@@ -15,8 +15,13 @@ router.get('/', function(req, res) {
 
 // Create a movie
 router.post('/create', function(req, res) {
+  var name = req.param('name');
+  if (!name || !name.length) {
+    res.redirect('/movies/');
+    return;
+  }
   models.Movie.create({
-    name: req.param('name')
+    name: name
   }).then(function(user) {
     res.redirect('/movies/' + user.id + '/view');
   });
