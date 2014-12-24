@@ -4,6 +4,8 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    if main
+      script(src='/requirejs.js', data-main=main) 
   body
     a(href='/movies')= t('nav.movies')
     a(href='/people')= t('nav.people')
