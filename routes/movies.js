@@ -16,12 +16,17 @@ router.get('/', function (req, res) {
 // Create a movie
 router.post('/create', function (req, res) {
     var name = req.param('name');
+    var origname = req.param('origname');
     if (!name || !name.length) {
         res.redirect('/movies/');
         return;
     }
+    if (!origname || !origname.length)
+        origname = name;
+
     models.Movie.create({
-        name: name
+        name: name,
+        origname: origname
     }).then(function (user) {
         res.redirect('/movies/' + user.id + '/view');
     });
@@ -73,11 +78,17 @@ function searchMovies(query, cb) {
     var likes = words.filter(function (word) {
         return word.length > 0;
     }).map(function (word) {
-        return {
-            name: {
-                like: '%' + word + '%'
-            }
-        };
+        return models.Sequelize.or(
+            {
+                name: {
+                    like: '%' + word + '%'
+                }
+            },
+            {
+                origname: {
+                    like: '%' + word + '%'
+                }
+            });
     });
     models.Movie.findAll({
         where: models.Sequelize.and.apply(models.Sequelize, likes),

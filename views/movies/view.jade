@@ -3,6 +3,7 @@ extends ../layout
 
 block content
   h1= movie.name
+    span.orig= movie.origname
 
   h2= t('view_movie.add_actor.title')
   form(action='/movies/'+movie.id+'/add_actor', method='post')

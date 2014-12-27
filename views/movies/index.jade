@@ -10,6 +10,9 @@ block content
     label= t('list_movies.create.name')
       input(type='text', name='name')
     br
+    label= t('list_movies.create.origname')
+      input(type='text', name='origname')
+    br
     input(type='submit', value=t('list_movies.create.submit'))
   
   form(action='/movies/search', method='get').searcharea

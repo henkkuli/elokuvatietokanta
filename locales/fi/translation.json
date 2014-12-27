@@ -9,6 +9,7 @@
         "create": {
             "title": "Lisää elokuva",
             "name": "Nimi: ",
+            "origname": "Alkuperäinen nimi: ",
             "submit": "Lisää"
         },
         "search": {

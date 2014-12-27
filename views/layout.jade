@@ -7,6 +7,10 @@ html
     if main
       script(src='/requirejs.js', data-main=main) 
   body
-    a(href='/movies')= t('nav.movies')
-    a(href='/people')= t('nav.people')
+    nav
+      ul
+        li
+          a(href='/movies')= t('nav.movies')
+        li
+          a(href='/people')= t('nav.people')
     block content
