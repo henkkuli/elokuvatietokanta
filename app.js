@@ -113,9 +113,8 @@ if (app.get('env') === 'development') {
             jqueryui: 'empty:'
         },
         modules: [
-            {
-                name: 'movie/index'
-            }
+            { name: 'movie/index' },
+            { name: 'movie/view' }
         ]
     }, function () {
         console.log('Successfully optimized javascript');

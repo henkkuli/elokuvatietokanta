@@ -1,5 +1,7 @@
 extends ../layout
 
+block setup
+  - var main = '/movie/view'
 
 block content
   .content
@@ -33,7 +35,7 @@ block content
       br
       input(type='submit', value=t('view_movie.edit.submit'))
 
-    form(action='/movies/'+movie.id+'/add_actor', method='post')
+    form(action='/movies/'+movie.id+'/add_actor', method='post').addActor
       h2= t('view_movie.add_actor.title')
       label= t('view_movie.add_actor.person')
         select(name='person_id')
@@ -42,7 +44,7 @@ block content
       br
       input(type='submit', value=t('view_movie.add_actor.submit'))
       
-    form(action='/movies/'+movie.id+'/add_director', method='post')
+    form(action='/movies/'+movie.id+'/add_director', method='post').addDirector
       h2= t('view_movie.add_director.title')
       label= t('view_movie.add_director.person')
         select(name='person_id')
