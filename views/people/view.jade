@@ -18,3 +18,14 @@ block content
       each movie in person.DirectedMovies
         li
           a(href='/movies/'+movie.id+'/view/')= movie.name
+
+  .side
+    form(action='/people/'+person.id+'/edit', method='post')
+      h2= t('view_person.edit.title')
+      label= t('view_person.edit.firstname')
+        input(type='text', name='firstname')
+      br
+      label= t('view_person.edit.surname')
+        input(type='text', name='surname')
+      br
+      input(type='submit', value=t('view_person.edit.submit'))

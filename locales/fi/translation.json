@@ -51,6 +51,12 @@
     },
     "view_person": {
         "list_acted_movies": "Elokuvat, joissa näytellyt",
-        "list_directed_movies": "Elokuvat, joita on ohjannut"
+        "list_directed_movies": "Elokuvat, joita on ohjannut",
+        "edit": {
+            "title": "Muokkaa henkilöä",
+            "firstname": "Etunimi: ",
+            "surname": "Sukunimi: ",
+            "submit": "Tallenna"
+        }
     }
 }
