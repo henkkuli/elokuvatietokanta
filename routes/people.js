@@ -4,6 +4,10 @@ var router = express.Router();
 
 // List movies
 router.get('/', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     models.Person.findAll({
         order: [['surname', 'ASC'], ['firstname', 'ASC']]
     }).then(function (people) {
@@ -15,6 +19,10 @@ router.get('/', function (req, res) {
 
 // Create a person
 router.post('/create', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     var firstname = req.param('firstname');
     var surname = req.param('surname');
     if (!firstname || !firstname.length || !surname || !surname.length) {
@@ -31,6 +39,10 @@ router.post('/create', function (req, res) {
 
 // View a person
 router.get('/:id/view', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     models.Person.find({
         where: { id: req.param('id') },
         include: [
@@ -46,6 +58,10 @@ router.get('/:id/view', function (req, res) {
 
 // Edit the person
 router.post('/:id/edit', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     var firstname = req.param('firstname');
     var surname = req.param('surname');
     if (!firstname || !firstname.length || !surname || !surname.length) {
@@ -66,6 +82,10 @@ router.post('/:id/edit', function (req, res) {
 
 // Remove the person
 router.post('/:id/remove', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     models.Person.find({
         where: { id: req.param('id') }
     }).then(function (person) {

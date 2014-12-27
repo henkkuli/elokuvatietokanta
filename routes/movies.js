@@ -4,6 +4,10 @@ var router = express.Router();
 
 // List movies
 router.get('/', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     models.Movie.findAll({
         order: [['name', 'ASC']]
     }).then(function (movies) {
@@ -15,6 +19,10 @@ router.get('/', function (req, res) {
 
 // Create a movie
 router.post('/create', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     var name = req.param('name');
     var origname = req.param('origname');
     if (!name || !name.length) {
@@ -34,6 +42,10 @@ router.post('/create', function (req, res) {
 
 // View a movie
 router.get('/:id/view', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     models.Movie.find({
         where: { id: req.param('id') },
         include: [
@@ -54,6 +66,10 @@ router.get('/:id/view', function (req, res) {
 
 // Edit the movie data
 router.post('/:id/edit', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     var name = req.param('name');
     var origname = req.param('origname');
     if (!name || !name.length) {
@@ -76,6 +92,10 @@ router.post('/:id/edit', function (req, res) {
 
 // Add an actor for a movie
 router.post('/:id/add_actor', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
@@ -86,6 +106,10 @@ router.post('/:id/add_actor', function (req, res) {
 
 // Remove an actor from the movie
 router.post('/:id/remove_actor/:person_id', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
@@ -96,6 +120,10 @@ router.post('/:id/remove_actor/:person_id', function (req, res) {
 
 // Remove a director from the movie
 router.post('/:id/remove_director/:person_id', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
@@ -106,6 +134,10 @@ router.post('/:id/remove_director/:person_id', function (req, res) {
 
 // Add a director for a movie
 router.post('/:id/add_director', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
@@ -116,6 +148,10 @@ router.post('/:id/add_director', function (req, res) {
 
 // Remove the movie
 router.post('/:id/remove', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
@@ -153,6 +189,10 @@ function searchMovies(query, cb) {
     });
 }
 router.get('/search', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     var q = req.param('q');
     searchMovies(q, function (movies) {
         res.render('movies/index', {
@@ -161,6 +201,10 @@ router.get('/search', function (req, res) {
     });
 });
 router.get('/ajax/search', function (req, res) {
+    // Enforce authentication
+    if (!req.session.userid)
+        return res.redirect('/');
+
     var q = req.param('q');
     searchMovies(q, function (movies) {
         res.json(movies);

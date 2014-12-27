@@ -1,0 +1,15 @@
+﻿extends ../layout
+
+block setup
+  - title = t('login.title')
+
+block content
+  .content
+    form(action='/users/login', method='post')
+      label= t('login.usernme')
+        input(type='text', name='username')
+      br
+      label= t('login.password')
+        input(type='password', name='password')
+      br
+      input(type='submit', value=t('login.submit'))
