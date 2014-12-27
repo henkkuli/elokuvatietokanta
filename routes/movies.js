@@ -84,6 +84,26 @@ router.post('/:id/add_actor', function (req, res) {
     });
 });
 
+// Remove an actor from the movie
+router.post('/:id/remove_actor/:person_id', function (req, res) {
+    models.Movie.find({
+        where: { id: req.param('id') },
+    }).then(function (movie) {
+        movie.removeActor(parseInt(req.param('person_id')));
+        res.redirect('/movies/' + req.param('id') + '/view/');
+    });
+});
+
+// Remove a director from the movie
+router.post('/:id/remove_director/:person_id', function (req, res) {
+    models.Movie.find({
+        where: { id: req.param('id') },
+    }).then(function (movie) {
+        movie.removeDirector(parseInt(req.param('person_id')));
+        res.redirect('/movies/' + req.param('id') + '/view/');
+    });
+});
+
 // Add a director for a movie
 router.post('/:id/add_director', function (req, res) {
     models.Movie.find({

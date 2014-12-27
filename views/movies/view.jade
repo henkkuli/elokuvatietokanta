@@ -11,12 +11,16 @@ block content
       each actor in movie.Actors
         li
           a(href='/people/'+actor.id+'/view/')= actor.surname + ', ' + actor.firstname
+          form(action='/movies/'+movie.id+'/remove_actor/'+actor.id, method='post').inline
+            input(type='submit', value='').removeBtn
 
     h2= t('view_movie.list_directors')
     ul
       each director in movie.Directors
         li
           a(href='/people/'+director.id+'/view/')= director.surname + ', ' + director.firstname
+          form(action='/movies/'+movie.id+'/remove_director/'+director.id, method='post').inline
+            input(type='submit', value='').removeBtn
 
   .side
     form(action='/movies/'+movie.id+'/edit', method='post')
