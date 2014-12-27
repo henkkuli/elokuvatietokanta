@@ -19,6 +19,16 @@ block content
           a(href='/people/'+director.id+'/view/')= director.surname + ', ' + director.firstname
 
   .side
+    form(action='/movies/'+movie.id+'/edit', method='post')
+      h2= t('view_movie.edit.title')
+      label= t('view_movie.edit.name')
+        input(type='text', name='name', value=movie.name)
+      br
+      label= t('view_movie.edit.origname')
+        input(type='text', name='origname', value=movie.origname)
+      br
+      input(type='submit', value=t('view_movie.edit.submit'))
+
     form(action='/movies/'+movie.id+'/add_actor', method='post')
       h2= t('view_movie.add_actor.title')
       label= t('view_movie.add_actor.person')

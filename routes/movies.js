@@ -23,7 +23,7 @@ router.post('/create', function (req, res) {
     }
     if (!origname || !origname.length)
         origname = name;
-
+    
     models.Movie.create({
         name: name,
         origname: origname
@@ -48,6 +48,28 @@ router.get('/:id/view', function (req, res) {
                 movie: movie,
                 people: people
             });
+        });
+    });
+});
+
+// Edit the movie data
+router.post('/:id/edit', function (req, res) {
+    var name = req.param('name');
+    var origname = req.param('origname');
+    if (!name || !name.length) {
+        res.redirect('/movies/');
+        return;
+    }
+    if (!origname || !origname.length)
+        origname = name;
+    
+    models.Movie.find({
+        where: { id: req.param('id') },
+    }).then(function (movie) {
+        movie.name = name;
+        movie.origname = origname;
+        movie.save().success(function () {
+            res.redirect('/movies/' + req.param('id') + '/view/');
         });
     });
 });

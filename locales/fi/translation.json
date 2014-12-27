@@ -30,6 +30,12 @@
 
     "view_movie": {
         "title": "Elokuva",
+        "edit": {
+            "title": "Muokkaa elokuvaa",
+            "name": "Nimi: ",
+            "origname": "Alkuperäinen nimi: ",
+            "submit": "Tallenna"
+        },
         "add_actor": {
             "title": "Lisää näyttelijä elokuvaan",
             "person": "Näyttelijä: ",
