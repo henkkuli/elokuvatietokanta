@@ -94,6 +94,17 @@ router.post('/:id/add_director', function (req, res) {
     });
 });
 
+// Remove the movie
+router.post('/:id/remove', function (req, res) {
+    models.Movie.find({
+        where: { id: req.param('id') },
+    }).then(function (movie) {
+        movie.destroy().success(function () {
+            res.redirect('/movies/');
+        });
+    });
+});
+
 // Search
 function searchMovies(query, cb) {
     var words = query.split(' ');

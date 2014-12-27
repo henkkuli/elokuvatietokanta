@@ -37,7 +37,7 @@ block content
             option(value=person.id)= person.surname + ', ' + person.firstname
       br
       input(type='submit', value=t('view_movie.add_actor.submit'))
-
+      
     form(action='/movies/'+movie.id+'/add_director', method='post')
       h2= t('view_movie.add_director.title')
       label= t('view_movie.add_director.person')
@@ -46,3 +46,7 @@ block content
             option(value=person.id)= person.surname + ', ' + person.firstname
       br
       input(type='submit', value=t('view_movie.add_director.submit'))
+      
+    form(action='/movies/'+movie.id+'/remove', method='post')
+      h2= t('view_movie.remove.title')
+      input(type='submit', value=t('view_movie.remove.submit'))

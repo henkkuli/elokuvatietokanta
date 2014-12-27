@@ -46,6 +46,10 @@
             "person": "Ohjaaja: ",
             "submit": "Lisää"
         },
+        "remove": {
+            "title": "Poista elokuva",
+            "submit": "Poista"
+        },
         "list_actors": "Näyttelijät",
         "list_directors": "Ohjaajat"
     },
