@@ -9,6 +9,7 @@ var bcrypt = require('bcrypt');
 var i18n = require('i18next');
 var requirejsMiddleware = require('requirejs-middleware');
 var models = require('./models');
+var requirejs = require('requirejs');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -103,7 +104,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Browser js
 if (app.get('env') === 'development') {
     app.use(express.static(path.join(__dirname, 'browserjs')));
+} else {
+    requirejs.optimize({
+        baseUrl: 'browserjs',
+        dir: 'build',
+        paths: {
+            jquery: 'empty:',
+            jqueryui: 'empty:'
+        },
+        modules: [
+            {
+                name: 'movie/index'
+            }
+        ]
+    }, function () {
+        console.log('Successfully optimized javascript');
+    });
+    app.use(express.static(path.join(__dirname, 'build')));
 }
+
 
 app.use(i18n.handle);
 i18n.registerAppHelper(app);
