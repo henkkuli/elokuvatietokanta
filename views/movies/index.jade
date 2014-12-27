@@ -5,25 +5,27 @@ block setup
   - var main = '/movie/index'
 
 block content
-  h2= t('list_movies.create.title')
-  form(action='/movies/create', method='post')
-    label= t('list_movies.create.name')
-      input(type='text', name='name')
-    br
-    label= t('list_movies.create.origname')
-      input(type='text', name='origname')
-    br
-    input(type='submit', value=t('list_movies.create.submit'))
-  
-  form(action='/movies/search', method='get').searcharea
-    //- Hidden date field
-    input(type='hidden', name='date', value=(new Date()).getTime() )
-    label= t('list_movies.search.search')
-      input(type='search', name='q').q
-    input(type='submit', value=t('list_movies.search.submit')).submit
+  .content
+    h2= t('list_movies.list_movies')
+    ul.movielist
+      each movie in movies
+        li
+          a(href='/movies/'+movie.id+'/view')= movie.name
 
-  h2= t('list_movies.list_movies')
-  ul.movielist
-    each movie in movies
-      li
-        a(href='/movies/'+movie.id+'/view')= movie.name
+  .side
+    form(action='/movies/search', method='get').searcharea
+      //- Hidden date field
+      input(type='hidden', name='date', value=(new Date()).getTime() )
+      label= t('list_movies.search.search')
+        input(type='search', name='q').q
+      input(type='submit', value=t('list_movies.search.submit')).submit
+    
+    form(action='/movies/create', method='post')
+      h2= t('list_movies.create.title')
+      label= t('list_movies.create.name')
+        input(type='text', name='name')
+      br
+      label= t('list_movies.create.origname')
+        input(type='text', name='origname')
+      br
+      input(type='submit', value=t('list_movies.create.submit'))

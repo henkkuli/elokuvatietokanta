@@ -1,5 +1,6 @@
+/* General alignment */
 body {
-    padding: 50px;
+    /*padding: 50px;*/
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,14 +8,41 @@ a {
     color: #00B7FF;
 }
 
-span.orig:before {
-    content: " (";
+nav {
+    height: 2em;
 }
 
-span.orig:after {
-    content: " )";
+    nav ul li {
+        float: left;
+        list-style: none;
+        padding-right: 1em;
+    }
+
+
+main {
+    position: relative;
 }
 
+.content {
+    position: absolute;
+    left: 30em;
+}
+
+.side {
+    width: 30em;
+    position: absolute;
+}
+
+
+/* View movie page */
 span.orig {
     font-style: italic;
 }
+
+    span.orig:before {
+        content: " (";
+    }
+
+    span.orig:after {
+        content: ")";
+    }
