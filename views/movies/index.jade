@@ -11,9 +11,16 @@ block content
       input(type='text', name='name')
     br
     input(type='submit', value=t('list_movies.create.submit'))
+  
+  form(action='/movies/search', method='get').searcharea
+    //- Hidden date field
+    input(type='hidden', name='date', value=(new Date()).getTime() )
+    label= t('list_movies.search.search')
+      input(type='search', name='q').q
+    input(type='submit', value=t('list_movies.search.submit')).submit
 
   h2= t('list_movies.list_movies')
-  ul
-  each movie in movies
-    li
-      a(href='/movies/'+movie.id+'/view')= movie.name
+  ul.movielist
+    each movie in movies
+      li
+        a(href='/movies/'+movie.id+'/view')= movie.name
