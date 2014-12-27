@@ -1,0 +1,15 @@
+﻿extends ../layout
+
+block setup
+  - title = t('register.title')
+
+block content
+  .content
+    form(action='/users/register', method='post')
+      label= t('register.username')
+        input(type='text', name='username')
+      br
+      label= t('register.password')
+        input(type='password', name='password')
+      br
+      input(type='submit', value=t('register.submit'))

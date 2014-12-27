@@ -19,6 +19,7 @@
         "list_movies": "Elokuvat"
     },
     "list_people": {
+        "title": "Henkilöt",
         "list_people": "Henkilöt",
         "create": {
             "title": "Lisää henkilö",
@@ -54,6 +55,7 @@
         "list_directors": "Ohjaajat"
     },
     "view_person": {
+        "title": "Henkilö",
         "list_acted_movies": "Elokuvat, joissa näytellyt",
         "list_directed_movies": "Elokuvat, joita on ohjannut",
         "edit": {
@@ -66,5 +68,18 @@
             "title": "Poista henkilö",
             "submit": "Poista"
         }
+    },
+
+    "login": {
+        "title": "Kirjaudu",
+        "username": "Käyttäjänimi: ",
+        "password": "Salasana: ",
+        "submit": "Kirjaudu"
+    },
+    "register": {
+        "title": "Rekisteröidy",
+        "username": "Käyttäjänimi: ",
+        "password": "Salasana: ",
+        "submit": "Rekisteröidy"
     }
 }

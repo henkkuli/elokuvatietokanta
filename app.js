@@ -37,23 +37,19 @@ app.use(session({
 
 // Login
 app.use(function (req, res, next) {
-    req.logup = function logup(username, password, cb) {
+    req.register = function register(username, password, cb) {
         var salt = bcrypt.genSaltSync(10);
         var hash = bcrypt.hashSync(password, salt);
-        console.log('Hashed: ' + hash);
         
-        /*models.User.find({
-            where: {
-                username: username,
-                password: password
-            }
+        models.User.create({
+            username: username,
+            password: hash
         }).then(function (user) {
-            if (user) {
-                req.session.userid = user.id;
+            if (user)
                 cb(user);
-            } else
+            else
                 res.redirect('/');
-        });*/
+        });
     };
     req.login = function login(username, password, cb) {
         models.User.find({
