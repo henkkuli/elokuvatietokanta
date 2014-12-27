@@ -61,6 +61,10 @@
             "firstname": "Etunimi: ",
             "surname": "Sukunimi: ",
             "submit": "Tallenna"
+        },
+        "remove": {
+            "title": "Poista henkilö",
+            "submit": "Poista"
         }
     }
 }

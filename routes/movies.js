@@ -99,6 +99,8 @@ router.post('/:id/remove', function (req, res) {
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
+        movie.setActors([]);
+        movie.setDirectors([]);
         movie.destroy().success(function () {
             res.redirect('/movies/');
         });

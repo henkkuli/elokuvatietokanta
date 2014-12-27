@@ -64,4 +64,17 @@ router.post('/:id/edit', function (req, res) {
     });
 });
 
+// Remove the person
+router.post('/:id/remove', function (req, res) {
+    models.Person.find({
+        where: { id: req.param('id') }
+    }).then(function (person) {
+        person.setActedMovies([]);
+        person.setDirectedMovies([]);
+        person.destroy().success(function () {
+            res.redirect('/people/');
+        });
+    });
+});
+
 module.exports = router;

@@ -23,9 +23,13 @@ block content
     form(action='/people/'+person.id+'/edit', method='post')
       h2= t('view_person.edit.title')
       label= t('view_person.edit.firstname')
-        input(type='text', name='firstname')
+        input(type='text', name='firstname', value=person.firstname)
       br
       label= t('view_person.edit.surname')
-        input(type='text', name='surname')
+        input(type='text', name='surname', value=person.surname)
       br
       input(type='submit', value=t('view_person.edit.submit'))
+
+    form(action='/people/'+person.id+'/remove', method='post')
+      h2= t('view_person.remove.title')
+      input(type='submit', value=t('view_person.remove.submit'))
