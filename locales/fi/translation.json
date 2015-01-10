@@ -10,6 +10,10 @@
             "title": "Lisää elokuva",
             "name": "Nimi: ",
             "origname": "Alkuperäinen nimi: ",
+            "year": "Vuosi: ",
+            "format": "Tallennusmedia: ",
+            "genre": "Lajityyppi: ",
+            "notice": "Huomautus: ",
             "submit": "Lisää"
         },
         "search": {
@@ -35,6 +39,10 @@
             "title": "Muokkaa elokuvaa",
             "name": "Nimi: ",
             "origname": "Alkuperäinen nimi: ",
+            "year": "Vuosi: ",
+            "format": "Tallennusmedia: ",
+            "genre": "Lajityyppi: ",
+            "notice": "Huomautus: ",
             "submit": "Tallenna"
         },
         "add_actor": {
@@ -81,5 +89,31 @@
         "username": "Käyttäjänimi: ",
         "password": "Salasana: ",
         "submit": "Rekisteröidy"
+    },
+
+    "format": {
+        "bluray": "Blu-ray",
+        "bluray3d": "Blu-ray 3D",
+        "dvd": "DVD"
+    },
+    "genre": {
+        "action": "Toiminta",
+        "adventure": "Seikkailu",
+        "animation": "Animaatio",
+        "comedy": "Komedia",
+        "crime": "Rikos",
+        "documentary": "Dokumentti",
+        "drama": "Draama",
+        "fantasy": "Fantasia",
+        "history": "Historia",
+        "horror": "Kauhu",
+        "music": "Musiikki",
+        "mystery": "Mysteeri",
+        "romance": "Rakkaus",
+        "scifi": "Tieteis",
+        "sport": "Urheilu",
+        "thriller": "Jännitys",
+        "war": "Sota",
+        "western": "Lännen"
     }
 }

@@ -33,6 +33,22 @@ block content
       label= t('view_movie.edit.origname')
         input(type='text', name='origname', value=movie.origname)
       br
+      label= t('view_movie.edit.year')
+        input(type='number', name='year', value=movie.year)
+      br
+      label= t('view_movie.edit.format')
+        select(name='format')
+          each format in formats
+            option(value=format, selected=(format===movie.format))= t('format.'+format)
+      br
+      label= t('view_movie.edit.genre')
+        select(name='genre')
+          each genre in genres
+            option(value=genre, selected=(genre===movie.genre))= t('genre.'+genre)
+      br
+      label= t('view_movie.edit.notice')
+        textarea(name='notice')= movie.notice
+      br
       input(type='submit', value=t('view_movie.edit.submit'))
 
     form(action='/movies/'+movie.id+'/add_actor', method='post').addActor

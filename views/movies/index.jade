@@ -28,4 +28,20 @@ block content
       label= t('list_movies.create.origname')
         input(type='text', name='origname')
       br
+      label= t('list_movies.create.year')
+        input(type='number', name='year')
+      br
+      label= t('list_movies.create.format')
+        select(name='format')
+          each format in formats
+            option(value=format)= t('format.'+format)
+      br
+      label= t('list_movies.create.genre')
+        select(name='genre')
+          each genre in genres
+            option(value=genre)= t('genre.'+genre)
+      br
+      label= t('list_movies.create.notice')
+        textarea(name='notice')
+      br
       input(type='submit', value=t('list_movies.create.submit'))

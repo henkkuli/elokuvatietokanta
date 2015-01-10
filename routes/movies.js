@@ -7,12 +7,14 @@ router.get('/', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     models.Movie.findAll({
         order: [['name', 'ASC']]
     }).then(function (movies) {
         res.render('movies/index', {
-            movies: movies
+            movies: movies,
+            formats: models.Movie.rawAttributes.format.values,
+            genres: models.Movie.rawAttributes.genre.values
         });
     });
 });
@@ -22,9 +24,13 @@ router.post('/create', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     var name = req.param('name');
     var origname = req.param('origname');
+    var year = req.param('year');
+    var format = req.param('format');
+    var genre = req.param('genre');
+    var notice = req.param('notice');
     if (!name || !name.length) {
         res.redirect('/movies/');
         return;
@@ -34,7 +40,11 @@ router.post('/create', function (req, res) {
     
     models.Movie.create({
         name: name,
-        origname: origname
+        origname: origname,
+        year: year,
+        format: format,
+        genre: genre,
+        notice: notice
     }).then(function (user) {
         res.redirect('/movies/' + user.id + '/view');
     });
@@ -45,7 +55,7 @@ router.get('/:id/view', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     models.Movie.find({
         where: { id: req.param('id') },
         include: [
@@ -58,7 +68,9 @@ router.get('/:id/view', function (req, res) {
         }).then(function (people) {
             res.render('movies/view', {
                 movie: movie,
-                people: people
+                people: people,
+                formats: models.Movie.rawAttributes.format.values,
+                genres: models.Movie.rawAttributes.genre.values
             });
         });
     });
@@ -69,11 +81,15 @@ router.post('/:id/edit', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     var name = req.param('name');
     var origname = req.param('origname');
+    var year = req.param('year');
+    var format = req.param('format');
+    var genre = req.param('genre');
+    var notice = req.param('notice');
     if (!name || !name.length) {
-        res.redirect('/movies/');
+        res.redirect('/movies/' + req.param('id') + '/view/');
         return;
     }
     if (!origname || !origname.length)
@@ -84,6 +100,10 @@ router.post('/:id/edit', function (req, res) {
     }).then(function (movie) {
         movie.name = name;
         movie.origname = origname;
+        movie.year = year;
+        movie.format = format;
+        movie.genre = genre;
+        movie.notice = notice;
         movie.save().success(function () {
             res.redirect('/movies/' + req.param('id') + '/view/');
         });
@@ -95,7 +115,7 @@ router.post('/:id/add_actor', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
@@ -109,7 +129,7 @@ router.post('/:id/remove_actor/:person_id', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
@@ -123,7 +143,7 @@ router.post('/:id/remove_director/:person_id', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
@@ -137,7 +157,7 @@ router.post('/:id/add_director', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
@@ -151,7 +171,7 @@ router.post('/:id/remove', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     models.Movie.find({
         where: { id: req.param('id') },
     }).then(function (movie) {
@@ -192,7 +212,7 @@ router.get('/search', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     var q = req.param('q');
     searchMovies(q, function (movies) {
         res.render('movies/index', {
@@ -204,7 +224,7 @@ router.get('/ajax/search', function (req, res) {
     // Enforce authentication
     if (!req.session.userid)
         return res.redirect('/');
-
+    
     var q = req.param('q');
     searchMovies(q, function (movies) {
         res.json(movies);
