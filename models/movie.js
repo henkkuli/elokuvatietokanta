@@ -3,7 +3,11 @@
 module.exports = function (sequelize, DataTypes) {
     var Movie = sequelize.define("Movie", {
         name: DataTypes.STRING,
-        origname: DataTypes.STRING
+        origname: DataTypes.STRING,
+        year: DataTypes.INTEGER,
+        format: DataTypes.ENUM('bluray', 'bluray3d', 'dvd'),
+        genre: DataTypes.ENUM('horror', 'thriller', 'action', 'adventure', 'comedy', 'crime', 'fantasy', 'documentary', 'romance', 'scifi', 'animation', 'drama', 'history', 'music', 'mystery', 'sport', 'war', 'western'),
+        notice: DataTypes.STRING
     }, {
         classMethods: {
             associate: function (models) {
